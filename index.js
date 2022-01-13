@@ -4,13 +4,13 @@ const cheerio = require('cheerio')
 const cors = require('cors')
 const logger = require('./loggerMiddleware')
 const app = express()
-const PUERTO = 3001
+const PORT = process.env.PORT||3000
 
 app.use(cors()) // Esto es un midlewere que soluciona los problemas de cors al hacer peticiones al sv.
 app.use(cors(logger)) // Esto es un midlewere que soluciona los problemas de cors al hacer peticiones al sv.
 
 // Creacion del Servidor
-app.listen(PUERTO, () => console.log(`Estamos funcionando en el puerto ${PUERTO}`))
+app.listen(PORT, () => console.log(`Estamos funcionando en el puerto ${PUERTO}`))
 
 // Configuracion de Rutas APIS
 

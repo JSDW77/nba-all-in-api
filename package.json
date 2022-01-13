@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,11 +12,12 @@
     "axios": "0.24.0",
     "cheerio": "1.0.0-rc.10",
     "cors": "2.8.5",
-    "express": "4.17.2",
-    "nodemon": "2.0.15"
+    "express": "4.17.2"
+    
   },
   "devDependencies": {
-    "standard": "16.0.4"
+    "standard": "16.0.4",
+    "nodemon": "2.0.15"
   },
     "eslintConfig": {
       "extends":"./node_modules/standard/eslintrc.json"
