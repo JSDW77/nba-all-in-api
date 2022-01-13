@@ -2,17 +2,20 @@ const express = require('express')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const cors = require('cors')
-const logger = require('./loggerMiddleware')
 const app = express()
 const PORT = process.env.PORT||3000
 
 app.use(cors()) // Esto es un midlewere que soluciona los problemas de cors al hacer peticiones al sv.
-app.use(cors(logger)) // Esto es un midlewere que soluciona los problemas de cors al hacer peticiones al sv.
+
 
 // Creacion del Servidor
 app.listen(PORT, () => console.log(`Estamos funcionando en el puerto ${PORT}`))
 
 // Configuracion de Rutas APIS
+
+app.get('/',(req,res)=>{
+  res.send('Bienvenido a la pagina de inicio, puedes dirigirte a /Posiciones-API o /Partidos-API')
+})
 
 app.get('/Posiciones-API', (req, res) => {
   const TablaDePosiciones = []
@@ -48,7 +51,7 @@ app.get('/Posiciones-API', (req, res) => {
     })
 })
 
-app.get('/Partidos', (req, res) => {
+app.get('/Partidos-API', (req, res) => {
   const Partidetes = []
   axios.get('https://www.mundodeportivo.com/resultados/baloncesto/nba')
     .then(respuesta => {
