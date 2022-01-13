@@ -10,7 +10,7 @@ app.use(cors()) // Esto es un midlewere que soluciona los problemas de cors al h
 app.use(cors(logger)) // Esto es un midlewere que soluciona los problemas de cors al hacer peticiones al sv.
 
 // Creacion del Servidor
-app.listen(PORT, () => console.log(`Estamos funcionando en el puerto ${PUERTO}`))
+app.listen(PORT, () => console.log(`Estamos funcionando en el puerto ${PORT}`))
 
 // Configuracion de Rutas APIS
 
