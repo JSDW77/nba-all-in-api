@@ -118,8 +118,8 @@ app.get('/Partidos-API', (req, res) => {
       }
 
       for (let i = 0; i < Partidetes.length; i++) {
-        Partidetes[i].team1.score = PuntosEquipo1[i]
-        Partidetes[i].team2.score = PuntosEquipo2[i]
+        Partidetes[i].team1.score = PuntosEquipo2[i]
+        Partidetes[i].team2.score = PuntosEquipo1[i]
       }
 
       res.json(Partidetes)
