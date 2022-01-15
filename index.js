@@ -3,19 +3,14 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 const cors = require('cors')
 const app = express()
-const PORT = process.env.PORT||3000
+const PORT = process.env.PORT || 3001
 
 app.use(cors()) // Esto es un midlewere que soluciona los problemas de cors al hacer peticiones al sv.
-
 
 // Creacion del Servidor
 app.listen(PORT, () => console.log(`Estamos funcionando en el puerto ${PORT}`))
 
 // Configuracion de Rutas APIS
-
-app.get('/',(req,res)=>{
-  res.send('Bienvenido a la pagina de inicio, puedes dirigirte a /Posiciones-API o /Partidos-API')
-})
 
 app.get('/Posiciones-API', (req, res) => {
   const TablaDePosiciones = []
@@ -64,7 +59,6 @@ app.get('/Partidos-API', (req, res) => {
       const PuntosPorEquipos = []
       const PuntosEquipo1 = []
       const PuntosEquipo2 = []
-
       $('.no-gutters').find('img').each(function () {
         const logoTeam1 = $(this).attr('src')
         Rivales.push({
@@ -75,13 +69,26 @@ app.get('/Partidos-API', (req, res) => {
       $('.no-gutters').find('ul.match__info').each(function () {
         const estado1 = $(this).find('.match__info-item--highlight').text()
         const estadoLive = $(this).children('.match__info-item--live').text()
+        console.log(estadoLive)
         if (estadoLive === 'DIRECTO') {
           EstadoPartido.push({
             EstadoDelPartido: estadoLive
           })
-        } else {
+        } else if (estadoLive === 'DESCANSO') {
+          EstadoPartido.push({
+            EstadoDelPartido: estadoLive
+          })
+        } else if (estado1 === 'FINAL') {
           EstadoPartido.push({
             EstadoDelPartido: estado1
+          })
+        }
+        else {
+          const p1 = Number(estado1.split(':')[0]) + 20
+          const p2 = estado1.split(':')[1]
+          const nuevo = String(p1) + ':' + p2
+          EstadoPartido.push({
+            EstadoDelPartido: nuevo
           })
         }
       })
