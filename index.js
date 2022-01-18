@@ -84,7 +84,13 @@ app.get('/Partidos-API', (req, res) => {
           })
         }
         else {
-          const p1 = Number(estado1.split(':')[0]) + 20
+          let p1 = Number(estado1.split(':')[0]) + 20
+          
+
+          if(p1>24){
+            p1 -= 24
+          }
+          
           const p2 = estado1.split(':')[1]
           const nuevo = String(p1) + ':' + p2
           EstadoPartido.push({
